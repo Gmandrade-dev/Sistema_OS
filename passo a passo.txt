@@ -1,0 +1,3 @@
+Aperta CTRL + SHIFT + P
+Selecione Python: Select Interpreter 
+Escolha o que tem Python(venv)
