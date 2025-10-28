@@ -28,10 +28,11 @@ def carregar_dados(tabela):
                   
             colunas = [desc[0] for desc in cursor.description]
             df = pd.DataFrame(resultados, columns=colunas)
+            return df
             
             # Salva em Excel
-            df.to_excel(f"{tabela}.xlsx", index=False)
-            print(df)
+          #  df.to_excel(f"{tabela}.xlsx", index=False)
+        #    print(df)
             
             cursor.close()
             conexao.close()
@@ -42,4 +43,4 @@ def carregar_dados(tabela):
 
 # carregar_dados('tb_usuario')
 
-carregar_dados('tb_os')
+# carregar_dados('tb_os')
