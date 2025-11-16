@@ -1,4 +1,4 @@
-from cnx import carregar_dados
+from Backend.cnx import carregar_dados
 import pandas as pd
 
 def DataClean(tabela):
@@ -12,13 +12,15 @@ def DataClean(tabela):
             'valor_final','data_recebimento','data_solicitacao','envio_email','responsavel_cliente',
             'data_edicao','id_usuario_edicao','id_aceite','id_funcionario_7',
             'data_agendamento','crio','orcamento','compra','cadastro','qualidade','marketing',
-            'os','id_colaborador','data_envio_terceiros','data_retorno_terceiros','motivo_cancelamento'
+            'os','id_colaborador','data_envio_terceiros','data_retorno_terceiros','motivo_cancelamento','nome_razao',
+            'funcionario_1','funcionario_2','funcionario_3','funcionario_4','funcionario_5','funcionario_6'
         ]
 
         if 'hh' in df.columns:
             df['hh'] = pd.to_timedelta(df['hh'], unit='d', errors='coerce')
             df['hh'] = df['hh'].astype(str).str.split().str[-1]
             df['hh'] = df['hh'].replace('00:00:00', '00:12:00')
+        df['terceiros'].fillna('IW')
 
     elif tabela == 'tb_usuario':
         colunas_remover = [
@@ -62,10 +64,7 @@ def DataClean(tabela):
 
    
     df = df.drop(columns=colunas_remover, errors='ignore')
-    # df.to_excel('data_cleaned.xlsx', index=False)
-    # print(f" Dados limpos salvos em: ")
-    print(df.head())
-
     return df
+
 
 
