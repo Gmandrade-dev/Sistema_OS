@@ -1,32 +1,29 @@
 from Backend.DataClean import DataClean
 
+cache = {} 
+
 def GetData(tabela):
-    if not tabela:
-        print(" Nenhuma tabela informada.")
-        return None
+    global cache
 
-    tabelas_validas = ['tb_os', 'tb_usuario', 'tb_cliente', 'tb_fornecedor']
-
-    if tabela not in tabelas_validas:
-        print(f" Tabela '{tabela}' não reconhecida. Opções válidas: {tabelas_validas}")
-        return None
+    if tabela in cache:
+        return cache[tabela]
 
     df = DataClean(tabela)
+    cache[tabela] = df
     return df
 
 
 def AnaliseResumo():
     dfOs = GetData('tb_os')
-    dfClientes = GetData('tb_cliente')
-    dfUsuarios = GetData('tb_usuario')
-    dados = {}
-
     totalOS = len(dfOs)
     concluidas = (dfOs['status'] == 'Concluida').sum()
-    users = (dfUsuarios['ativo_usuario'] == 1).sum()
-    clientes = len(dfClientes)
-    
 
+    dfClientes = GetData('tb_cliente')
+    clientes = len(dfClientes)
+
+    dfUsuarios = GetData('tb_usuario')
+    users = (dfUsuarios['ativo_usuario'] == 1).sum()
+    
     dados = {
         'totalOs': totalOS,
         'concluidas': concluidas,
