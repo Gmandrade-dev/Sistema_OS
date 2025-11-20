@@ -14,16 +14,16 @@ def AreaSidebar(sidebar,content, limpar_tela):
 
     btn_resumo = ctk.CTkButton(sidebar, text="Resumo",height=70,fg_color="#2b2b2b",hover_color="#1f1f1f", font=("Arial", 16),
                                 command=lambda: Resumo(content,lambda: (limpar_tela(content))))
-    btn_resumo.pack(pady=10, fill="x", padx=20)
+    btn_resumo.pack(pady=10, fill="x", padx=10)
     
     btn_rclientes = ctk.CTkButton(sidebar, text="Ranking Clientes",height=70,fg_color="#2b2b2b",hover_color="#1f1f1f",font=("Arial", 16), command=lambda: Clientes(content,lambda: (limpar_tela(content))))
-    btn_rclientes.pack(pady=10, fill="x", padx=20)
+    btn_rclientes.pack(pady=10, fill="x", padx=10)
 
     btn_rcolaboradores = ctk.CTkButton(sidebar, text="Ranking Colaboradores",height=70,fg_color="#2b2b2b",hover_color="#1f1f1f",font=("Arial", 16), command=lambda: Colaboradores(content,lambda: (limpar_tela(content))))
-    btn_rcolaboradores.pack(pady=10, fill="x", padx=20)
+    btn_rcolaboradores.pack(pady=10, fill="x", padx=10)
 
     btn_atemporal = ctk.CTkButton(sidebar, text="Análise Temporal",height=70,fg_color="#2b2b2b",hover_color="#1f1f1f", font=("Arial", 16), command=lambda: AnaliseTemporal(content,lambda: (limpar_tela(content))))
-    btn_atemporal.pack(pady=10, fill="x", padx=20)
+    btn_atemporal.pack(pady=10, fill="x", padx=10)
 
 
     

@@ -7,7 +7,7 @@ def Dashboard(app, limpar_tela):
     frame_dashboard = ctk.CTkFrame(app)
     frame_dashboard.pack(fill="both", expand=True)
     
-    sidebar = ctk.CTkFrame(frame_dashboard, width=300,corner_radius=0)
+    sidebar = ctk.CTkFrame(frame_dashboard, width=270,corner_radius=0)
     sidebar.pack(side="left", fill="y" )
     sidebar.pack_propagate(False)
 

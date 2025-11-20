@@ -37,17 +37,25 @@ def AnaliseCliente(mes=None, ano=None):
 
     dfos = GetData('tb_os')
 
-    # Converter data (correção do seu erro)
+    # Converter data corretamente
     dfos["data_criacao"] = pd.to_datetime(dfos["data_criacao"], errors="coerce")
 
-    # Aplicar filtro somente se mês e ano forem informados
-    if mes is not None and ano is not None:
+    # Aplicar filtro só quando mes e ano forem passados
+    if mes and ano:
         dfos = dfos[
             (dfos["data_criacao"].dt.month == mes) &
             (dfos["data_criacao"].dt.year == ano)
         ]
+    elif ano:
+        dfos = dfos[
+            dfos["data_criacao"].dt.year == ano
+        ]
+    elif mes:
+        dfos = dfos[
+            dfos["data_criacao"].dt.month == mes
+        ]
 
-    # Quantidade total de OS por cliente
+    # Agrupar total geral
     clienteOS = (
         dfos.groupby("cliente")["id_os"]
         .count()
@@ -55,7 +63,7 @@ def AnaliseCliente(mes=None, ano=None):
         .head(200)
     )
 
-    # Quantas vezes foi para "BLACK WHITE"
+    # Agrupar apenas terceiros BLACK WHITE
     terceirosOS = (
         dfos[dfos["terceiros"] == "BLACK WHITE"]
         .groupby("cliente")["id_os"]
@@ -66,7 +74,6 @@ def AnaliseCliente(mes=None, ano=None):
 
     dados = {}
 
-    # Montar estrutura final
     for cliente, total_os in clienteOS.items():
         dados[cliente] = {
             "total_os": int(total_os),
