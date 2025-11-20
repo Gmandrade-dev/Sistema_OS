@@ -8,6 +8,7 @@ import pandas as pd
 
 
 def Resumo(content, limpar_tela):
+    print("Resumo chamado")
     limpar_tela()
 
     # ---------------- TÍTULO ----------------
