@@ -1,6 +1,9 @@
 import customtkinter as ctk
 from view.components.AreaSidebar import AreaSidebar
 from view.components.Resumo import Resumo
+from view.components.Clientes import Clientes
+from view.components.Colaboradores import Colaboradores
+
 
 def Dashboard(app, limpar_tela):
 
